@@ -24,9 +24,10 @@ for set_info in soup.findAll('div', class_='custom-list-item-detailed-photo-stat
             set_name = set_info.h3.text
             set_url = set_info.h3.a['href']
             set_stats = set_info.find('ul', class_='list-unstyled list-inline custom-photo-details')
-            
+            photos = set_stats.find('li', class_='custom-photo-details-medias').text
+
             try:
-                num_of_photos = "Number of photos: {}".format(set_stats.find('li', class_='custom-photo-details-medias').text)
+                num_of_photos = "Number of photos: {}".format(photos)
                 duration = "Duration: 0:00"
             except AttributeError:
                 pass
@@ -52,18 +53,18 @@ for set_info in soup.findAll('div', class_='custom-list-item-detailed-photo-stat
 
             for publish_info in set_meta:
                 print(publish_info.text)
-            
+
+            print(comm_rating)
+
             try:
                 print(num_of_photos)
             except NameError:
                 pass
-            
+
             try:
                 print(duration)
             except NameError:
                 pass
-            
-            print(comm_rating)
         looper += 1
     else:
         break
