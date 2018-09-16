@@ -8,7 +8,6 @@ with open('18.9.15 page.html') as html_file:
     soup = BeautifulSoup(html_file, 'lxml')
 
 regex_duration = re.compile('\d{2}\:\d{2}')
-regex_pics = re.compile('\d{3}')
 regex_rating = re.compile('\d\.\d{2}')
 
 # Loop through 30 sets and display the info to the console
@@ -27,7 +26,7 @@ for set_info in soup.findAll('div', class_='custom-list-item-detailed-photo-stat
             photos = set_stats.find('li', class_='custom-photo-details-medias').text
 
             try:
-                num_of_photos = "Number of photos: {}".format(photos)
+                num_of_photos = f"Number of photos: {photos}"
                 duration = "Duration: 0:00"
             except AttributeError:
                 pass
@@ -38,13 +37,13 @@ for set_info in soup.findAll('div', class_='custom-list-item-detailed-photo-stat
 
             for test_str in set_stats_clean:
                 if regex_duration.findall(test_str):
-                    duration = "Duration: {}".format(regex_duration.findall(test_str)[0])
+                    duration = f"Duration: {regex_duration.findall(test_str)[0]}"
                     num_of_photos = "Number of photos: 0"
                 else:
                     pass
 
                 if regex_rating.findall(test_str):
-                    comm_rating = "Community Score: {}".format(regex_rating.findall(test_str)[0])
+                    comm_rating = f"Community Score: {regex_rating.findall(test_str)[0]}"
 
             # print data to console
             print('-' * 100)
