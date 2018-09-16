@@ -21,3 +21,4 @@ Package        | Version
 -------------- | -------
 beautifulsoup4 | 4.6.3
 bs4            | 0.0.1
+lxml           | 4.2.5
