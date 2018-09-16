@@ -1,4 +1,6 @@
 """ A script that will parse through the data on Met-Art.com"""
+""" This is the original file that I created, but didn't like it, so I started from scratch and have something I like better """
+""" See photoscrape.py instead """
 
 import re
 from bs4 import BeautifulSoup

@@ -15,3 +15,9 @@ The eventual goals of this project are to do the following:
 - [ ] Perform useful analysis on the stored data
 - [ ] Provide feedback to the site as part of the site's community
 - [ ] Track changes in data over the course of time
+
+Dependancies:
+Package        | Version
+-------------- | -------
+beautifulsoup4 | 4.6.3
+bs4            | 0.0.1
