@@ -1,2 +1,6 @@
 \pages
+\csv sample
+\output
+
 string_manipulation.py
+scratch.py

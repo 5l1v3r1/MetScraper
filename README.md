@@ -10,7 +10,7 @@ Web Scraping data from Met-Art.com
 
 The eventual goals of this project are to do the following:
 - [X] Scrape individual set data from the site
-  - This ended up being something of a challenge since the site requires login access and I ahven't figured out how to work aroudn that.
+  - This ended up being something of a challenge since the site requires login access and I ahven't figured out how to work around that.
 - [ ] Filter the data and identify relevant data points about each set
   - [X] Currently have the ability to scrape photo data - need to adjust to get video data as well.
   - [ ] Also need to be able to account for multiple-model sets/vids
@@ -22,6 +22,7 @@ The eventual goals of this project are to do the following:
 - [ ] Track changes in data over the course of time
 
 Dependancies:
+
 Package        | Version
 -------------- | -------
 beautifulsoup4 | 4.6.3
