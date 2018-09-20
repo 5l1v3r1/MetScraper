@@ -1,33 +1,26 @@
-def find_model(main_deets):
-    """Finds the set's Featured Model"""
-    model_left_trim = main_deets.find("Featuring") + 18
-    model_trimmed_left = main_deets[model_left_trim:]
-    model_left_trim2 = model_trimmed_left.find(">") + 1
-    model_trimmed_left2 = model_trimmed_left[model_left_trim2:]
-    model_right_trim = model_trimmed_left2.find('<')
-    model = model_trimmed_left2[:model_right_trim]
-    return model
-
-def find_release(main_deets):
-    """Finds the set's Release Date"""
-    release_left_trim = main_deets.find("Released") + 17
-    release_trimmed_left = main_deets[release_left_trim:]
-    release_right_trim = release_trimmed_left.find('<')
-    release_date = release_trimmed_left[:release_right_trim]
-    return release_date
-
-def find_photog(main_deets):
-    """Finds the set's photographer"""
-    photog_left_trim = main_deets.find("Photographer:") + 21
-    photog_trimmed_left = main_deets[photog_left_trim:]
-    photog_left_trim2 = photog_trimmed_left.find(">") + 1
-    photog_trimmed_left2 = photog_trimmed_left[photog_left_trim2:]
-    photog_right_trim = photog_trimmed_left2.find('<')
-    photog = photog_trimmed_left2[:photog_right_trim]
-    return photog
+import re
 
 def is_video(info_str):
     """Determines if the update is a video"""
     video = str(info_str)
     if video.find('runtime') > 0:
         return True
+
+def get_set_info(info, main_deets):
+    # regex declarations
+    reg_date = re.compile(r'\w{3}\s\d{1,2},\s\d{4}')
+    reg_featuring = re.compile(r'Featuring:\s(.*)')
+    reg_photoDir = re.compile(r'(Director|Photographer):\s(.*)')
+    # Turn the details into a list
+    sub_deets = info.find('ul', class_='list-unstyled list-inline custom-photo-details')
+    det_split = sub_deets.findAll('li')
+    # print(main_deets)
+    # Find the data and store them in variables
+    set_name = info.h3.text
+    set_url = info.h3.a['href']
+    release_date = reg_date.search(main_deets[0].text).group()
+    set_model = reg_featuring.search(main_deets[1].text).group(1).replace(',', ' -')
+    artist = reg_photoDir.search(main_deets[2].text).group(2)
+    img_time = det_split[0].text
+    set_rated = det_split[1].text
+    return release_date, set_name, set_model, artist, img_time, set_rated, set_url
